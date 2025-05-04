@@ -6,7 +6,7 @@
   <style>
     canvas {
       border: 1px solid #000;
-      background-color: yellow;
+      background-color: rgb(0, 0, 0);
       margin:5vw 5vw;
     }
   </style>
@@ -22,6 +22,8 @@
     //building simple triangles first
     const canvas = document.getElementById('canvas');
     const ctx = canvas.getContext('2d');
+    console.log(ctx);
+    
 
     // Step 1: Create some random points
     const points = [];
@@ -30,13 +32,19 @@
       let y = Math.random() * canvas.height;   // random point select on y axsis
       points.push([x, y]);
     }
-
+    
+    function getRandomColor() {
+  const r = Math.floor(Math.random() * 256); // red: 0–255
+  const g = Math.floor(Math.random() * 256); // green
+  const b = Math.floor(Math.random() * 256); // blue
+  return `rgb(${r}, ${g}, ${b})`;
+}
     // Step 2: Run Delaunay triangulation
     const delaunay = Delaunator.from(points);
     const triangles = delaunay.triangles;
 
     // Step 3: Draw each triangle
-    for (let i = 0; i < triangles.length; i += 3) {
+    for (let i = 0; i < triangles.length; i += 3) {     // i +=3 we need to jump after 3 points 
       const p1 = points[triangles[i]];
       const p2 = points[triangles[i + 1]];
       const p3 = points[triangles[i + 2]];
@@ -47,6 +55,8 @@
       ctx.lineTo(p3[0], p3[1]);
       ctx.closePath();
       ctx.strokeStyle = "black";
+      ctx.fillStyle = getRandomColor();   //now all triangles are red lets spice up things and make em in diff color;
+      ctx.fill();
       ctx.stroke();
     }
   </script>

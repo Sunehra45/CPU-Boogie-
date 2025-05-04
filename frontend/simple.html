@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Delaunay Triangles</title>
+  <style>
+    canvas {
+      border: 1px solid #000;
+      background-color: yellow;
+      margin:5vw 5vw;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="500"></canvas>
+
+  <!-- Delaunator library -->
+  <script src="https://cdn.jsdelivr.net/npm/delaunator@5.0.0/delaunator.min.js"></script>
+
+  <script>
+
+    //building simple triangles first
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+
+    // Step 1: Create some random points
+    const points = [];
+    for (let i = 0; i < 32; i++) {             
+      let x = Math.random() * canvas.width;    // random point select on x axsis
+      let y = Math.random() * canvas.height;   // random point select on y axsis
+      points.push([x, y]);
+    }
+
+    // Step 2: Run Delaunay triangulation
+    const delaunay = Delaunator.from(points);
+    const triangles = delaunay.triangles;
+
+    // Step 3: Draw each triangle
+    for (let i = 0; i < triangles.length; i += 3) {
+      const p1 = points[triangles[i]];
+      const p2 = points[triangles[i + 1]];
+      const p3 = points[triangles[i + 2]];
+
+      ctx.beginPath();
+      ctx.moveTo(p1[0], p1[1]);
+      ctx.lineTo(p2[0], p2[1]);
+      ctx.lineTo(p3[0], p3[1]);
+      ctx.closePath();
+      ctx.strokeStyle = "black";
+      ctx.stroke();
+    }
+  </script>
+</body>
+</html>

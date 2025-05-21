@@ -1,6 +1,7 @@
 import os from "node:os";
 import chalk from "chalk";
 import { cpus } from "node:os";
+import { memoryUsage } from "node:process";
 
 function checkOS() {
     const platform = os.platform();
@@ -23,6 +24,23 @@ cpus().forEach(CPU => {
     totalidletime += CPU.times.idle;
 });
 array.push(totalidletime);
+
+
+//calculation of per core usage : 
+console.log(cpus()[0]);
+
+setInterval(()=>{
+cpus().map((core,i)=>{
+ return {
+   index : i, 
+   memoryUsage : 
+  }
+})
+function calculateMemory(){
+const oldcpus = Object.values(cpus().times).reduce((a,b)=>{ return a+b});
+}
+},1000)
+
 
 
 console.log(chalk.cyan.bold("System Info:"));

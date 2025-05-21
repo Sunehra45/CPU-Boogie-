@@ -1,6 +1,6 @@
-import os from "node:os";
-import chalk from "chalk";
-import { cpus } from "node:os";
+import os, { cpus } from "node:os";
+import chalk from "chalk"; 
+import process from "node:process";
 
 function checkOS() {
     const platform = os.platform();
@@ -24,11 +24,15 @@ cpus().forEach(CPU => {
 });
 array.push(totalidletime);
 
+// free memory code:
+console.log(process.cpuUsage())
+// console.log(cpus()[0]);
+// console.log(chalk.cyan.bold("System Info:"));
+// console.log("Current system : " + chalk.yellowBright(checkOS()));
+// console.log("Total CPU Cores : " + chalk.yellowBright(totalcores));
+// console.log('Total system idle time is' + " " + chalk.yellowBright(totalidletime));
+// console.log("Write" + chalk.cyan(" .help ") + "for more info");
 
-console.log(chalk.cyan.bold("System Info:"));
-console.log("Current system : " + chalk.yellowBright(checkOS()));
-console.log("Total CPU Cores : " + chalk.yellowBright(totalcores));
-console.log('Total system idle time is' + " " + chalk.yellowBright(totalidletime));
-console.log("Write" + chalk.cyan(" .help ") + "for more info");
+
 
 

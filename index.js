@@ -1,16 +1,17 @@
 import os, { cpus } from "node:os";
 import chalk from "chalk";
-import { monitor, checkOS } from "./modules/index.js";
+import { monitor, checkOS , showchart} from "./modules/index.js";
 
 let totalcores = cpus().length;
 let totalidletime = 0;
+
 let array = []
 cpus().forEach(CPU => {
     totalidletime += CPU.times.idle;
 });
 array.push(totalidletime);
 
-setInterval(monitor,1000);
+// setInterval(monitor,1000);
 
 console.log(chalk.cyan.bold("System Info:"));
 console.log("Current system: " + " " + chalk.yellowBright(checkOS()));

@@ -27,7 +27,7 @@ export function monitor() {
         console.clear();
         console.table(usage);
 
-        function calculate(oldCPU, newCPUS) {
+            function calculate(oldCPU, newCPUS) {
 
             const Oldtime = Object.values(oldCPU.times).reduce((a, b) => a + b)
             const Newtime = Object.values(newCPUS.times).reduce((a, b) => a + b)

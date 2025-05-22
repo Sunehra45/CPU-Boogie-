@@ -10,8 +10,8 @@ cpus().forEach(CPU => {
 });
 array.push(totalidletime);
 
+setInterval(monitor,1000);
 
-setInterval(monitor,1000)
 console.log(chalk.cyan.bold("System Info:"));
 console.log("Current system: " + " " + chalk.yellowBright(checkOS()));
 console.log("Total CPU Cores: " + " " + chalk.yellowBright(totalcores));

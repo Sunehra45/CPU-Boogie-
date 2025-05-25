@@ -1,5 +1,12 @@
 import os, { cpus } from "node:os";
 // import asciichart from "asciichart";
+import * as readline from "node:readline/promises";
+import { stdin, stdout } from "process";
+
+const rl = readline.createInterface({
+  input: stdin,
+  output: stdout,
+});
 
 export function checkOS() {
     const platform = os.platform();
@@ -81,4 +88,21 @@ export function showOptions(){
      options.forEach(Option=>{
      console.log(Option);
   })
+}
+
+export async function chartInput (){
+    const userInput = await rl.question( "How many seconds you want to see table? \n");
+    if(isNaN(userInput)) {
+    console.log("Enter a valid number..");
+    question();
+} 
+let count = 0;
+const interval = setInterval(() => {
+    count ++;
+    monitor();
+     if(count >= userInput){
+     clearInterval(interval);
+     showOptions();
+    }
+}, 1000);
 }

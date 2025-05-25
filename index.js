@@ -1,15 +1,15 @@
-import * as readline from "node:readline/promises"; 
-import {stdin,stdout} from "process" ;
+import * as readline from "node:readline/promises";
+import { stdin, stdout } from "process";
 import os, { cpus } from "node:os";
 import chalk from "chalk";
-import { monitor, checkOS , showchart, showOptions} from "./modules/index.js";
+import { monitor, checkOS, showchart, showOptions } from "./modules/index.js";
 
 let totalcores = cpus().length;
 let totalidletime = 0;
 
 let array = []
 cpus().forEach(CPU => {
-    totalidletime += CPU.times.idle;
+  totalidletime += CPU.times.idle;
 });
 array.push(totalidletime);
 
@@ -22,26 +22,28 @@ console.log('System idle time:' + " " + chalk.yellowBright(totalidletime));
 console.log("write help for more..")
 
 
-const rl = readline.createInterface({ 
-     input:stdin,
-    output :stdout,
- });
+const rl = readline.createInterface({
+  input: stdin,
+  output: stdout,
+});
 
-rl.on("line" , (line)=>{
-      switch (line) {
-      case "help" : showOptions();
+rl.on("line", (line) => {
+  switch (line) {
+    case "help": showOptions();
       break;
-      case "m" :  setInterval(monitor,1000)
-      break;
-      case "g" :
+    case "g":
       console.log("Graph is in building process.....");
       break;
-      case "c" :
+    case "c":
       console.log("cofee is loading .......");
       break;
-      default:
-      console.log("Unknown command");
-    }
+    case "e":
+      console.log( chalk.green("Exiting...."))
+      rl.close();
+    default:
+      console.log( chalk.redBright("Invalid Input"));
+      showOptions();
+  }
 })
 
 

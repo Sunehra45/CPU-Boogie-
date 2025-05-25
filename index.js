@@ -2,7 +2,7 @@ import * as readline from "node:readline/promises";
 import { stdin, stdout } from "process";
 import os, { cpus } from "node:os";
 import chalk from "chalk";
-import { monitor, checkOS, showchart, showOptions } from "./modules/index.js";
+import { checkOS, showchart, showOptions , chartInput } from "./modules/index.js";
 
 let totalcores = cpus().length;
 let totalidletime = 0;
@@ -26,21 +26,27 @@ const rl = readline.createInterface({
   input: stdin,
   output: stdout,
 });
+     
+
 
 rl.on("line", (line) => {
-  switch (line) {
-    case "help": showOptions();
+      switch (line) {
+      case "help":
+      showOptions();
       break;
-    case "g":
+      case "m":
+      chartInput();
+      break;
+      case "g":
       console.log("Graph is in building process.....");
       break;
-    case "c":
+      case "c":
       console.log("cofee is loading .......");
       break;
-    case "e":
+      case "e":
       console.log( chalk.green("Exiting...."))
       rl.close();
-    default:
+      default:
       console.log( chalk.redBright("Invalid Input"));
       showOptions();
   }

@@ -13,24 +13,6 @@ cpus().forEach(CPU => {
 });
 array.push(totalidletime);
 
-
-//calculation of per core usage : 
-console.log(cpus()[0]);
-
-setInterval(()=>{
-cpus().map((core,i)=>{
- return {
-   index : i, 
-   memoryUsage : 
-  }
-})
-function calculateMemory(){
-const oldcpus = Object.values(cpus().times).reduce((a,b)=>{ return a+b});
-}
-},1000)
-
-
-
 console.log(chalk.cyan.bold("System Info:"));
 console.log("Current system: " + " " + chalk.yellowBright(checkOS()));
 console.log("Total CPU Cores: " + " " + chalk.yellowBright(totalcores));
